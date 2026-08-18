@@ -7,20 +7,18 @@
     <?php while (have_posts()) : the_post(); ?>
 
       <article>
-        <h1>
-          <?php the_title(); ?>
-        </h1>
+        <header>
+          <h1>
+            <?php the_title(); ?>
+          </h1>
+        </header>
 
-        <div>
+        <div class="page-content">
           <?php the_content(); ?>
         </div>
       </article>
 
     <?php endwhile; ?>
-
-  <?php else : ?>
-
-    <p>Nenhum conteúdo encontrado.</p>
 
   <?php endif; ?>
 
