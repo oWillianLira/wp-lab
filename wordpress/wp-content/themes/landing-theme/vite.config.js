@@ -1,12 +1,8 @@
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  server: {
-    host: '0.0.0.0',
-    port: 5173,
-    strictPort: true,
-    origin: 'http://127.0.0.1:5173',
-  },
+  plugins: [react()],
 
   build: {
     manifest: true,
@@ -14,7 +10,17 @@ export default defineConfig({
     emptyOutDir: true,
 
     rollupOptions: {
-      input: 'assets/js/main.js',
+      input: {
+        main: 'assets/js/main.js',
+        'landing-hero': 'assets/blocks/landing-hero/index.jsx',
+      },
     },
+  },
+
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    strictPort: true,
+    origin: 'http://127.0.0.1:5173',
   },
 });
