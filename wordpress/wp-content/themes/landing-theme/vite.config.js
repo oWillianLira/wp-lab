@@ -2,7 +2,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'classic',
+    }),
+  ],
 
   build: {
     manifest: true,
@@ -14,6 +18,7 @@ export default defineConfig({
         main: 'assets/js/main.js',
         'landing-hero': 'assets/blocks/landing-hero/index.jsx',
       },
+      external: ['react', 'react-dom'],
     },
   },
 

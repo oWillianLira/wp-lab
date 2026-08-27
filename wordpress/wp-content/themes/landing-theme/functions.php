@@ -1,5 +1,8 @@
 <?php
 
+require_once get_template_directory() . '/inc/enqueue.php';
+require_once get_template_directory() . '/inc/blocks.php';
+
 function landing_theme_setup()
 {
   add_theme_support('title-tag');
@@ -13,6 +16,3 @@ function landing_theme_setup()
 }
 
 add_action('after_setup_theme', 'landing_theme_setup');
-
-require_once get_template_directory() . '/inc/enqueue.php';
-require_once get_template_directory() . '/inc/blocks.php';

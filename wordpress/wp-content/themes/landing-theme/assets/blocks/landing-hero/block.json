@@ -4,5 +4,15 @@
   "title": "Landing Hero",
   "category": "design",
   "icon": "cover-image",
-  "description": "Hero section para a Landing Page."
+  "description": "Hero section para a Landing Page.",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Minha Landing Page"
+    },
+    "description": {
+      "type": "string",
+      "default": "Uma descrição para minha Landing Page."
+    }
+  }
 }
