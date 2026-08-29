@@ -1,0 +1,32 @@
+.landing-hero {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 400px;
+  padding: 60px;
+
+  background-position: center;
+  background-size: cover;
+
+  color: #fff;
+
+  h2,
+  p {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    margin: 0 0 20px;
+    font-size: 32px;
+  }
+
+  p {
+    max-width: 600px;
+    margin: 0;
+    font-size: 18px;
+  }
+}

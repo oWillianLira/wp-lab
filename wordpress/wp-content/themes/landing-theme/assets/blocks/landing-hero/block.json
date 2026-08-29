@@ -13,6 +13,18 @@
     "description": {
       "type": "string",
       "default": "Uma descrição para minha Landing Page."
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 50
     }
   }
 }

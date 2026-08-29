@@ -31,6 +31,17 @@ function landing_register_blocks()
     true
   );
 
+  if (!empty($entry['css'])) {
+    foreach ($entry['css'] as $index => $css) {
+      wp_enqueue_style(
+        'landing-hero-' . $index,
+        get_template_directory_uri() . '/dist/' . $css,
+        [],
+        null
+      );
+    }
+  }
+
   register_block_type(
     get_template_directory() . '/assets/blocks/landing-hero',
     [
