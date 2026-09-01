@@ -1,5 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { globSync } from 'glob';
+import path from 'node:path';
+
+const blockEntries = Object.fromEntries(
+  globSync('assets/blocks/*/index.jsx').map((file) => {
+    const name = path.basename(path.dirname(file));
+
+    return [name, file];
+  }),
+);
 
 export default defineConfig({
   plugins: [
@@ -16,9 +26,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'assets/js/main.js',
-        'landing-hero': 'assets/blocks/landing-hero/index.jsx',
+        ...blockEntries,
       },
-      external: ['react', 'react-dom'],
     },
   },
 

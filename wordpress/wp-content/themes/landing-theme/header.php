@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html <?php language_attributes(); ?>>
 
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1">
 
   <?php wp_head(); ?>
 </head>
@@ -12,20 +15,23 @@
 
   <?php wp_body_open(); ?>
 
-  <header>
-    <?php
-    if (has_custom_logo()) {
-      the_custom_logo();
-    } else {
-    ?>
-      <a href="<?php echo esc_url(home_url('/')); ?>">
+  <header class="site-header">
+    <div class="container">
+      <a
+        class="site-header__logo"
+        href="<?php echo esc_url(home_url('/')); ?>">
         <?php bloginfo('name'); ?>
       </a>
-    <?php
-    }
 
-    wp_nav_menu([
-      'theme_location' => 'primary',
-    ]);
-    ?>
+      <nav class="site-header__nav">
+        <?php
+        wp_nav_menu([
+          'theme_location' => 'primary',
+          'fallback_cb'    => false,
+        ]);
+        ?>
+      </nav>
+    </div>
   </header>
+
+  <main class="site-main">

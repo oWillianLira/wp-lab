@@ -14,40 +14,59 @@ function landing_register_blocks()
     true
   ) ?? [];
 
-  $entry = $manifest['assets/blocks/landing-hero/index.jsx'] ?? null;
+  $blocks_path =
+    get_template_directory() . '/assets/blocks';
 
-  if (!$entry) {
-    return;
-  }
+  $block_files = glob($blocks_path . '/*/block.json');
 
-  wp_register_script(
-    'landing-hero',
-    get_template_directory_uri() . '/dist/' . $entry['file'],
-    [
-      'wp-blocks',
-      'wp-element',
-    ],
-    null,
-    true
-  );
+  foreach ($block_files as $block_file) {
+    $block_path = dirname($block_file);
 
-  if (!empty($entry['css'])) {
-    foreach ($entry['css'] as $index => $css) {
-      wp_enqueue_style(
-        'landing-hero-' . $index,
-        get_template_directory_uri() . '/dist/' . $css,
-        [],
-        null
-      );
+    $relative_path = str_replace(
+      get_template_directory() . '/',
+      '',
+      $block_path
+    );
+
+    $entry_key = $relative_path . '/index.jsx';
+
+    $entry = $manifest[$entry_key] ?? null;
+
+    if (!$entry) {
+      continue;
     }
-  }
 
-  register_block_type(
-    get_template_directory() . '/assets/blocks/landing-hero',
-    [
-      'editor_script' => 'landing-hero',
-    ]
-  );
+    $handle = basename($block_path);
+
+    wp_register_script(
+      $handle,
+      get_template_directory_uri() . '/dist/' . $entry['file'],
+      [
+        'wp-blocks',
+        'wp-element',
+      ],
+      null,
+      true
+    );
+
+    if (!empty($entry['css'])) {
+      foreach ($entry['css'] as $index => $css) {
+        wp_enqueue_style(
+          $handle . '-' . $index,
+          get_template_directory_uri() . '/dist/' . $css,
+          [],
+          null
+        );
+      }
+    }
+
+    register_block_type(
+      $block_path,
+      [
+        'editor_script' => $handle,
+      ]
+    );
+  }
 }
 
 add_action('init', 'landing_register_blocks');
