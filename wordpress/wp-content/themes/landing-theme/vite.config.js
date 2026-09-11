@@ -4,10 +4,12 @@ import { globSync } from 'glob';
 import path from 'node:path';
 
 const blockEntries = Object.fromEntries(
-  globSync('assets/blocks/*/index.jsx').map((file) => {
-    const name = path.basename(path.dirname(file));
+  globSync('assets/blocks/**/index.jsx').map((file) => {
+    const relativePath = path.relative('assets/blocks', file).replace(/\\/g, '/');
 
-    return [name, file];
+    const entryName = relativePath.replace('/index.jsx', '');
+
+    return [entryName, file];
   }),
 );
 

@@ -13,7 +13,7 @@ export default function Save({ attributes }) {
 
   return (
     <div
-      className="landing-hero"
+      className="lp-hero"
       style={{
         backgroundImage,
       }}

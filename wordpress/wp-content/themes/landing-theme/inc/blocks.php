@@ -17,7 +17,20 @@ function landing_register_blocks()
   $blocks_path =
     get_template_directory() . '/assets/blocks';
 
-  $block_files = glob($blocks_path . '/*/block.json');
+  $block_files = [];
+
+  $iterator = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator(
+      $blocks_path,
+      RecursiveDirectoryIterator::SKIP_DOTS
+    )
+  );
+
+  foreach ($iterator as $file) {
+    if ($file->getFilename() === 'block.json') {
+      $block_files[] = $file->getPathname();
+    }
+  }
 
   foreach ($block_files as $block_file) {
     $block_path = dirname($block_file);
@@ -36,7 +49,11 @@ function landing_register_blocks()
       continue;
     }
 
-    $handle = basename($block_path);
+    $handle = str_replace(
+      '/',
+      '-',
+      str_replace('assets/blocks/', '', $relative_path)
+    );
 
     wp_register_script(
       $handle,
@@ -44,10 +61,14 @@ function landing_register_blocks()
       [
         'wp-blocks',
         'wp-element',
+        'wp-block-editor',
+        'wp-components',
       ],
       null,
       true
     );
+
+    wp_enqueue_script($handle);
 
     if (!empty($entry['css'])) {
       foreach ($entry['css'] as $index => $css) {

@@ -1,0 +1,22 @@
+{
+  "apiVersion": 3,
+  "name": "landing/benefits",
+  "title": "Landing Benefits",
+  "category": "design",
+  "icon": "yes-alt",
+  "description": "Benefits section for the Landing Page.",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Why choose our solution?"
+    },
+    "description": {
+      "type": "string",
+      "default": "Discover the benefits of our solution."
+    },
+    "benefits": {
+      "type": "array",
+      "default": []
+    }
+  }
+}
