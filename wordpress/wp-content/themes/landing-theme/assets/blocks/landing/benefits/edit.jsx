@@ -1,27 +1,33 @@
-const { useBlockProps, RichText } = wp.blockEditor;
+const { RichText } = wp.blockEditor;
 
 export default function Edit({ attributes, setAttributes }) {
   const { title, description } = attributes;
 
-  const blockProps = useBlockProps({
-    className: 'landing-benefits',
-  });
-
   return (
-    <section {...blockProps}>
+    <div className="landing-benefits">
+      <p>RENDER TEST</p>
+
       <RichText
         tagName="h2"
         value={title}
-        onChange={(value) => setAttributes({ title: value })}
-        placeholder="Título da seção..."
+        onChange={(value) =>
+          setAttributes({
+            title: value,
+          })
+        }
+        placeholder="Section title..."
       />
 
       <RichText
         tagName="p"
         value={description}
-        onChange={(value) => setAttributes({ description: value })}
-        placeholder="Descrição da seção..."
+        onChange={(value) =>
+          setAttributes({
+            description: value,
+          })
+        }
+        placeholder="Section description..."
       />
-    </section>
+    </div>
   );
 }

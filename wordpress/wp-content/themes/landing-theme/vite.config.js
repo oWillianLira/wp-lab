@@ -1,16 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { globSync } from 'glob';
-import path from 'node:path';
 
 const blockEntries = Object.fromEntries(
-  globSync('assets/blocks/**/index.jsx').map((file) => {
-    const relativePath = path.relative('assets/blocks', file).replace(/\\/g, '/');
-
-    const entryName = relativePath.replace('/index.jsx', '');
-
-    return [entryName, file];
-  }),
+  globSync('assets/blocks/**/index.jsx').map((file) => [
+    file.replace(/\\/g, '/'),
+    file,
+  ]),
 );
 
 export default defineConfig({
@@ -24,6 +20,7 @@ export default defineConfig({
     manifest: true,
     outDir: 'dist',
     emptyOutDir: true,
+    // minify: false,
 
     rollupOptions: {
       input: {

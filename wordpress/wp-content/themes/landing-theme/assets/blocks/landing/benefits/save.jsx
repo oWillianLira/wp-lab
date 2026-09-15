@@ -1,8 +1,13 @@
-export default function Save() {
+const { RichText } = wp.blockEditor;
+
+export default function Save({ attributes }) {
+  const { title, description } = attributes;
+
   return (
-    <div>
-      <h2>BENEFITS TESTE</h2>
-      <p>Bloco funcionando no frontend.</p>
-    </div>
+    <section className="landing-benefits">
+      <RichText.Content tagName="h2" value={title} />
+
+      <RichText.Content tagName="p" value={description} />
+    </section>
   );
 }
