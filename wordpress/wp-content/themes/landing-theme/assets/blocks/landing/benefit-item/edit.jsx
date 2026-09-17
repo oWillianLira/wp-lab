@@ -1,19 +1,19 @@
-const { RichText, InnerBlocks } = wp.blockEditor;
+const { RichText } = wp.blockEditor;
 
 export default function Edit({ attributes, setAttributes }) {
   const { title, description } = attributes;
 
   return (
-    <section className="landing-benefits">
+    <div className="landing-benefit-item">
       <RichText
-        tagName="h2"
+        tagName="h3"
         value={title}
         onChange={(value) =>
           setAttributes({
             title: value,
           })
         }
-        placeholder="Section title..."
+        placeholder="Benefit title..."
       />
 
       <RichText
@@ -24,12 +24,8 @@ export default function Edit({ attributes, setAttributes }) {
             description: value,
           })
         }
-        placeholder="Section description..."
+        placeholder="Benefit description..."
       />
-
-      <div className="landing-benefits-grid">
-        <InnerBlocks allowedBlocks={['landing/benefit-item']} />
-      </div>
-    </section>
+    </div>
   );
 }

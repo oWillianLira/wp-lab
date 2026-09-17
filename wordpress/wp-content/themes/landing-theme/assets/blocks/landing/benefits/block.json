@@ -13,10 +13,6 @@
     "description": {
       "type": "string",
       "default": "Discover the benefits of our solution."
-    },
-    "benefits": {
-      "type": "array",
-      "default": []
     }
   }
 }

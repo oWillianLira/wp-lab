@@ -20,8 +20,10 @@ export default defineConfig({
     manifest: true,
     outDir: 'dist',
     emptyOutDir: true,
-    // minify: false,
-
+    minify: 'terser',
+    terserOptions: {
+      mangle: false,
+    },
     rollupOptions: {
       input: {
         main: 'assets/js/main.js',
