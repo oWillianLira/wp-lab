@@ -1,0 +1,18 @@
+{
+  "apiVersion": 3,
+  "name": "landing/testimonials",
+  "title": "Landing Testimonials",
+  "category": "design",
+  "icon": "format-quote",
+  "description": "Testimonials section for the Landing Page.",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "What our customers say"
+    },
+    "description": {
+      "type": "string",
+      "default": "See what our customers have to say about our solution."
+    }
+  }
+}

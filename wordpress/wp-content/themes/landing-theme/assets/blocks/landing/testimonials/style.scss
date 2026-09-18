@@ -1,0 +1,28 @@
+.landing-testimonials {
+  padding: 4rem 2rem;
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+}
+
+.landing-testimonial-item {
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  h3 {
+    margin: 0 0 1rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+  }
+
+  span {
+    font-size: 0.875rem;
+  }
+}

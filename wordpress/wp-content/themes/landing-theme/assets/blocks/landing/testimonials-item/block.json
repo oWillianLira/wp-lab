@@ -1,0 +1,22 @@
+{
+  "apiVersion": 3,
+  "name": "landing/testimonials-item",
+  "title": "Landing Testimonial Item",
+  "category": "design",
+  "icon": "format-quote",
+  "description": "A single testimonial item.",
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": "Customer name"
+    },
+    "testimonial": {
+      "type": "string",
+      "default": "Testimonial description"
+    },
+    "company": {
+      "type": "string",
+      "default": "Company / Role"
+    }
+  }
+}

@@ -4,7 +4,7 @@ export default function Edit({ attributes, setAttributes }) {
   const { title, description } = attributes;
 
   return (
-    <section className="landing-benefits">
+    <section className="landing-testimonials">
       <RichText
         tagName="h2"
         value={title}
@@ -27,8 +27,8 @@ export default function Edit({ attributes, setAttributes }) {
         placeholder="Section description..."
       />
 
-      <div className="landing-benefits-grid">
-        <InnerBlocks allowedBlocks={['landing/benefits-item']} />
+      <div className="landing-testimonials-grid">
+        <InnerBlocks allowedBlocks={['landing/testimonials-item']} />
       </div>
     </section>
   );
