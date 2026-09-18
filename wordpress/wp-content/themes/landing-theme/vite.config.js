@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { globSync } from 'glob';
+import path from 'path';
 
 const blockEntries = Object.fromEntries(
   globSync('assets/blocks/**/index.jsx').map((file) => [
@@ -37,5 +38,11 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     origin: 'http://127.0.0.1:5173',
+  },
+
+  resolve: {
+    alias: {
+      '@utils': path.resolve(__dirname, 'assets/js/utils'),
+    },
   },
 });

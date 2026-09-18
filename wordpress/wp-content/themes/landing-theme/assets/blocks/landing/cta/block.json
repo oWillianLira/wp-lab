@@ -1,0 +1,26 @@
+{
+  "apiVersion": 3,
+  "name": "landing/cta",
+  "title": "Landing CTA",
+  "category": "design",
+  "icon": "megaphone",
+  "description": "Call to action section for the Landing Page.",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Ready to get started?"
+    },
+    "description": {
+      "type": "string",
+      "default": "Discover how our solution can help your business today."
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Get started"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}
