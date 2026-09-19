@@ -107,6 +107,20 @@ class Assets
       }
     }
 
+    if (function_exists('is_woocommerce') && is_woocommerce()) {
+      $woocommerceAsset =
+        $this->manifest['assets/scss/woocommerce.scss'] ?? null;
+
+      if ($woocommerceAsset && !empty($woocommerceAsset['file'])) {
+        wp_enqueue_style(
+          'landing-woocommerce',
+          $themeUri . '/dist/' . $woocommerceAsset['file'],
+          [],
+          null
+        );
+      }
+    }
+
     wp_enqueue_script(
       'theme',
       $themeUri . '/dist/' . $asset['file'],

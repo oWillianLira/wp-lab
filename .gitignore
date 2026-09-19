@@ -20,4 +20,11 @@ dist/
 Thumbs.db
 
 # WP Uploaded images
-wordpress/wp-content/uploads/
+/wordpress/wp-content/uploads/
+
+# WP Languages
+/wordpress/wp-content/languages/
+
+# WP Plugins
+/wordpress/wp-content/plugins/*
+!/wordpress/wp-content/plugins/.gitkeep
