@@ -19,7 +19,10 @@ dist/
 # Windows
 Thumbs.db
 
-# WP Uploaded images
+# Editor
+.vscode/
+
+# WP Uploads
 /wordpress/wp-content/uploads/
 
 # WP Languages
