@@ -1,7 +1,8 @@
-const { RichText } = wp.blockEditor;
+const { RichText, useBlockProps } = wp.blockEditor;
 
 export default function Save({ attributes }) {
   const { title, description, imageUrl, overlayOpacity } = attributes;
+  const blockProps = useBlockProps.save({ className: 'lp-hero' });
 
   const backgroundImage = imageUrl
     ? `linear-gradient(
@@ -13,7 +14,7 @@ export default function Save({ attributes }) {
 
   return (
     <div
-      className="lp-hero"
+      {...blockProps}
       style={{
         backgroundImage,
       }}

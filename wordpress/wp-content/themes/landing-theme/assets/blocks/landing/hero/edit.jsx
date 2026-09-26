@@ -1,10 +1,11 @@
-const { InspectorControls, MediaUpload, MediaUploadCheck, RichText } =
+const { InspectorControls, MediaUpload, MediaUploadCheck, RichText, useBlockProps } =
   wp.blockEditor;
 
 const { PanelBody, Button, RangeControl } = wp.components;
 
 export default function Edit({ attributes, setAttributes }) {
   const { title, description, imageId, imageUrl, overlayOpacity } = attributes;
+  const blockProps = useBlockProps({ className: 'landing-hero' });
 
   return (
     <>
@@ -57,7 +58,7 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
 
       <div
-        className="landing-hero"
+        {...blockProps}
         style={{
           backgroundImage: imageUrl
             ? `linear-gradient(
