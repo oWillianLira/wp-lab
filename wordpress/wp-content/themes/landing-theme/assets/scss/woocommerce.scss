@@ -2,4 +2,39 @@
   width: min(1200px, 100%);
   margin: 0 auto;
   padding: 4rem 2rem;
+
+  .landing-product-card {
+    padding: 1.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    background: #fff;
+
+    a.woocommerce-LoopProduct-link {
+      display: block;
+      text-decoration: none;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        border-radius: 8px;
+      }
+
+      h2.woocommerce-loop-product__title {
+        margin: 1rem 0 0.5rem;
+        font-size: 1.125rem;
+      }
+
+      .price {
+        display: block;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .add_to_cart_button {
+      width: 88%;
+      text-align: center;
+    }
+  }
 }

@@ -84,6 +84,15 @@ class Assets
 
       return $tag;
     }, 10, 2);
+
+    if (function_exists('is_woocommerce') && is_woocommerce()) {
+      wp_enqueue_style(
+        'landing-woocommerce',
+        $this->devServer . '/assets/scss/woocommerce.scss',
+        [],
+        null
+      );
+    }
   }
 
   private function enqueueProd(): void

@@ -19,3 +19,15 @@ add_action(
   'woocommerce_after_main_content',
   'landing_woocommerce_after_main_content'
 );
+
+function landing_woocommerce_product_classes($classes)
+{
+  $classes[] = 'landing-product-card';
+
+  return $classes;
+}
+
+add_filter(
+  'woocommerce_post_class',
+  'landing_woocommerce_product_classes'
+);
