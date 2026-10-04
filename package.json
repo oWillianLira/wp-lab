@@ -1,12 +1,12 @@
 {
-  "name": "core-concept-owl-root",
+  "name": "owl-hyolanda-art-root",
   "version": "1.0.0",
   "description": "WordPress containerized development environment & starter template",
   "private": true,
   "scripts": {
     "setup": "node setup.js",
-    "dev": "npm --prefix wordpress/wp-content/themes/core-concept-owl run dev",
-    "build": "npm --prefix wordpress/wp-content/themes/core-concept-owl run build"
+    "dev": "npm --prefix wordpress/wp-content/themes/owl-core-concept run dev",
+    "build": "npm --prefix wordpress/wp-content/themes/owl-core-concept run build"
   },
   "devDependencies": {}
 }
