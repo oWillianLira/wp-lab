@@ -22,8 +22,13 @@ Thumbs.db
 # Editor
 .vscode/
 
+# Database storage (Docker volume directory) 
+/db_data/
+/mysql_data/
+
 # WP Uploads
 /wordpress/wp-content/uploads/
+!/wordpress/wp-content/uploads/.gitkeep
 
 # WP Languages
 /wordpress/wp-content/languages/

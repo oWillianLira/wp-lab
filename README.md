@@ -20,7 +20,7 @@ Technical WordPress development laboratory focused on a modern, containerized de
     ├── wp-content/
     │   ├── plugins/
     │   ├── themes/
-    │   │   └── landing-theme/
+    │   │   └── owl-core-concept/
     │   └── uploads/
     │
     └── wp-includes/
@@ -87,7 +87,7 @@ The current project theme is:
 wordpress/
 └── wp-content/
     └── themes/
-        └── landing-theme/
+        └── owl-core-concept/
 ```
 
 ### `uploads/`

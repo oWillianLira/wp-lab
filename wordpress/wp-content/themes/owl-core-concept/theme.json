@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "brand-primary", "color": "#89b0ae", "name": "Primary Green" },
+        { "slug": "brand-dark", "color": "#555b6e", "name": "Dark" }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        { "slug": "sm", "size": "1rem", "name": "Small" },
+        { "slug": "md", "size": "2rem", "name": "Medium" }
+      ]
+    }
+  }
+}
