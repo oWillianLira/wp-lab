@@ -67,6 +67,13 @@ See:
 wordpress/README.md
 ```
 
+In a new project, run a WP update:
+
+```text
+docker compose run --rm wpcli core update
+docker compose run --rm wpcli core update-db
+```
+
 for environment-specific documentation.
 
 ## `wordpress/wp-content/`

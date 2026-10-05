@@ -69,7 +69,11 @@ function setupEnvFile(dbName, composeName) {
 
   if (fs.existsSync(envPath)) {
     replaceInFile(envPath, /WORDPRESS_DB_NAME=.*/g, `WORDPRESS_DB_NAME=${dbName}`);
-    replaceInFile(envPath, /COMPOSE_PROJECT_NAME=.*/g, `COMPOSE_PROJECT_NAME=${composeName}`);
+    replaceInFile(
+      envPath,
+      /COMPOSE_PROJECT_NAME=.*/g,
+      `COMPOSE_PROJECT_NAME=${composeName}`,
+    );
 
     // Replace default salt placeholders with secure random strings
     const saltKeys = [
@@ -90,6 +94,20 @@ function setupEnvFile(dbName, composeName) {
 
     console.log('Generated secure random WordPress Auth Keys & Salts in .env.');
   }
+
+  if (fs.existsSync(envExamplePath)) {
+    replaceInFile(
+      envExamplePath,
+      /WORDPRESS_DB_NAME=.*/g,
+      `WORDPRESS_DB_NAME=${dbName}`,
+    );
+    replaceInFile(
+      envExamplePath,
+      /COMPOSE_PROJECT_NAME=.*/g,
+      `COMPOSE_PROJECT_NAME=${composeName}`,
+    );
+    console.log('Updated .env.example with the project and database names.');
+  }
 }
 
 async function runSetup() {
@@ -102,8 +120,12 @@ async function runSetup() {
   const targetThemePath = path.join(themesDir, BASE_THEME_SLUG);
 
   if (!fs.existsSync(targetThemePath)) {
-    console.error(`\n[ERROR] Base theme "${BASE_THEME_SLUG}" was not found in "wordpress/wp-content/themes/".`);
-    console.error(`This setup script is designed to run exclusively from the "${BASE_THEME_SLUG}" starter template.\n`);
+    console.error(
+      `\n[ERROR] Base theme "${BASE_THEME_SLUG}" was not found in "wordpress/wp-content/themes/".`,
+    );
+    console.error(
+      `This setup script is designed to run exclusively from the "${BASE_THEME_SLUG}" starter template.\n`,
+    );
     rl.close();
     process.exit(1);
   }
@@ -111,26 +133,35 @@ async function runSetup() {
   const currentThemeFolder = BASE_THEME_SLUG;
 
   // Prompt for new project details
-  const projectName = await askQuestion('Enter New Project Name (e.g., Acme Store): ');
+  const projectName = await askQuestion(
+    'Enter New Project Name (e.g., Acme Store): ',
+  );
   if (!projectName.trim()) {
     console.error('\n[ERROR] Project Name cannot be empty.\n');
     rl.close();
     process.exit(1);
   }
 
-  const defaultSlug = projectName
-    .toLowerCase()
-    .replace(/[^a-z0-9]/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '') + '-owl';
+  const defaultSlug =
+    projectName
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '') + '-owl';
 
-  const themeSlugInput = await askQuestion(`Theme Slug / Folder Name [default: ${defaultSlug}]: `);
+  const themeSlugInput = await askQuestion(
+    `Theme Slug / Folder Name [default: ${defaultSlug}]: `,
+  );
   const themeSlug = themeSlugInput.trim() || defaultSlug;
 
-  const codePrefixInput = await askQuestion(`PHP/CSS Function & Class Prefix [default: ${BASE_CODE_PREFIX}]: `);
+  const codePrefixInput = await askQuestion(
+    `PHP/CSS Function & Class Prefix [default: ${BASE_CODE_PREFIX}]: `,
+  );
   const codePrefix = codePrefixInput.trim() || BASE_CODE_PREFIX;
 
-  const dbNameInput = await askQuestion(`Database Name [default: wp_${themeSlug.replace(/-/g, '_')}]: `);
+  const dbNameInput = await askQuestion(
+    `Database Name [default: wp_${themeSlug.replace(/-/g, '_')}]: `,
+  );
   const dbName = dbNameInput.trim() || `wp_${themeSlug.replace(/-/g, '_')}`;
 
   console.log('\n--- Configuration Summary ---');
@@ -153,11 +184,23 @@ async function runSetup() {
 
   if (fs.existsSync(oldThemePath) && oldThemePath !== newThemePath) {
     fs.renameSync(oldThemePath, newThemePath);
-    console.log(`Renamed theme folder from "${currentThemeFolder}" to "${themeSlug}".`);
+    console.log(
+      `Renamed theme folder from "${currentThemeFolder}" to "${themeSlug}".`,
+    );
   }
 
   console.log('\n[2/5] Updating text-domain and code prefixes in theme files...');
-  const targetExtensions = ['.php', '.js', '.jsx', '.ts', '.tsx', '.json', '.scss', '.css', '.md'];
+  const targetExtensions = [
+    '.php',
+    '.js',
+    '.jsx',
+    '.ts',
+    '.tsx',
+    '.json',
+    '.scss',
+    '.css',
+    '.md',
+  ];
   const themeFiles = getFilesRecursively(newThemePath, targetExtensions);
 
   // Replace old theme slug
@@ -182,8 +225,10 @@ async function runSetup() {
   console.log('\n[3/5] Setting up environment variables & secrets (.env)...');
   setupEnvFile(dbName, themeSlug);
 
-  console.log('\n[4/5] Updating configuration files (Vite / Docker / Package.json / Readme)...');
-  
+  console.log(
+    '\n[4/5] Updating configuration files (Vite / Docker / Package.json / Readme)...',
+  );
+
   // Update Root README.md if present
   const rootReadmePath = path.join(ROOT_DIR, 'README.md');
   if (fs.existsSync(rootReadmePath)) {
@@ -200,8 +245,16 @@ async function runSetup() {
   // Update vite.config.js inside theme
   const viteConfigThemePath = path.join(newThemePath, 'vite.config.js');
   if (fs.existsSync(viteConfigThemePath)) {
-    replaceInFile(viteConfigThemePath, new RegExp(currentThemeFolder, 'g'), themeSlug);
-    replaceInFile(viteConfigThemePath, new RegExp(BASE_CODE_PREFIX, 'g'), codePrefix);
+    replaceInFile(
+      viteConfigThemePath,
+      new RegExp(currentThemeFolder, 'g'),
+      themeSlug,
+    );
+    replaceInFile(
+      viteConfigThemePath,
+      new RegExp(BASE_CODE_PREFIX, 'g'),
+      codePrefix,
+    );
   }
 
   // Update Root package.json
